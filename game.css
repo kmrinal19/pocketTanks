@@ -15,11 +15,90 @@ canvas {
     height: 600px;
     
 }
+.start_buttons{
+    width: 100px;
+    margin: 7px;
+}
 .close{
     grid-column-start: 2;
     justify-self: end;
     margin: 0 10px 0 0;
-
+    width: 30px;
+    height: 25px;
+}
+.fill_player_details{
+    display: none;
+    justify-items: center;
+    align-content: center;
+    background-color: #f1f1f1;
+    width: 1000px;
+    justify-self: center;
+    height: 600px;
+    grid-template-rows: 5% 95%;
+    grid-template-columns: 50% 50%;
+    padding: 15px;
+}
+.player_details_get{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 2fr 1fr;
+}
+.all_radio_container{
+}
+.radio_container {
+    display: inline;
+    position: relative;
+    padding-left: 35px;
+    margin-right:10px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .radio_container .radio_input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+  }
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  .radio_container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  .radio_container .checkmark:after {
+    top: 9px;
+   left: 9px;
+   width: 8px;
+   height: 8px;
+   border-radius: 50%;
+   background: black;
+}
+.red{
+    background-color:#D92929;
+}
+.yellow{
+    background-color: #D9BD29;
+}
+.blue{
+    background-color: #094363;
+}
+.green{
+    background-color: #225821;
+}
+.next_weapon{
+    grid-row-start: 5;
 }
 .game-wrapper{
     display: grid;

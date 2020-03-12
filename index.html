@@ -3,9 +3,69 @@
     <head>
         <link rel="stylesheet" type="text/css" href="game.css">
     </head>
-    <body onload="startGame()">
+    <body>
         <div class="game-starter" id="game-starter">
-            <button class="start_buttons" id="start_game" onclick="displayGame()">Start Game</button>
+            <button class="start_buttons" id="start_game" onclick="fill_player_details()">Start Game</button>
+            <button class="start_buttons" id="option_game" onclick="displayOptions()">Options</button>
+            <button class="start_buttons" id="instructions_game" onclick="displayInstructions()">Instructions</button>
+        </div>
+        <div class="fill_player_details" id="fill_player_details">
+            <button class="close" onclick="displayStart()">X</button>
+            <div class="player_details_get">
+                <h3 class="name_head" id="name_head_1">Player 1</h3>
+                <div class="input-container">
+                    <label for="player_name_1">Name</label>
+                    <input id = "player_name_1" class="" type="text" placeholder="Enter player 1 name" value="Player 1">
+                </div>
+                <div class="all_radio_container">
+                    <div>Select tank color: </div>
+                    <br/>
+                    <label class="radio_container">
+                        <input type="radio"  name="radio1" class="radio_input">
+                        <span class="checkmark blue"></span>
+                      </label>
+                      <label class="radio_container">
+                        <input type="radio" checked="checked" name="radio1" class="radio_input">
+                        <span class="checkmark green"></span>
+                      </label>
+                      <label class="radio_container">
+                        <input type="radio"  name="radio1" class="radio_input">
+                        <span class="checkmark red"></span>
+                      </label>
+                      <label class="radio_container">
+                        <input type="radio" name="radio1" class="radio_input">
+                        <span class="checkmark yellow"></span>
+                      </label>
+                </div>
+            </div>
+            <div class="player_details_get">
+                <h3 class="name_head" id="name_head_2">Player 2</h3>
+                <div class="input-container">
+                    <label for="player_name_2">Name</label>
+                    <input id = "player_name_2" class="" type="text" placeholder="Enter player 2 name" value="Player 2">
+                </div>
+                <div class="all_radio_container">
+                    <div>Select tank color: </div>
+                    <br/>
+                    <label class="radio_container">
+                        <input type="radio" checked="checked" name="radio2" class="radio_input">
+                        <span class="checkmark blue"></span>
+                      </label>
+                      <label class="radio_container">
+                        <input type="radio" name="radio2" class="radio_input">
+                        <span class="checkmark green"></span>
+                      </label>
+                      <label class="radio_container">
+                        <input type="radio"  name="radio2" class="radio_input">
+                        <span class="checkmark red"></span>
+                      </label>
+                      <label class="radio_container">
+                        <input type="radio" name="radio2" class="radio_input">
+                        <span class="checkmark yellow"></span>
+                      </label>
+                </div>
+                <div class="next_weapon"><button id="display_weapon" onclick="display_weapon()">Next</button></div>
+            </div>
         </div>
         <div class="game-wrapper" id="game-wrapper">
             <button class="close" onclick="displayStart()">X</button>
