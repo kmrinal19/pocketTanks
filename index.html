@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="game.css">
+    </head>
+    <body onload="startGame()">
+        <div class="game-starter" id="game-starter">
+            <button class="start_buttons" id="start_game" onclick="displayGame()">Start Game</button>
+        </div>
+        <div class="game-wrapper" id="game-wrapper">
+            <button class="close" onclick="displayStart()">X</button>
+            <div id="canvas-wrapper" class="canvas-wrapper"></div>
+            <div class="player_details">
+                <button id="button1" class="fire-button" onclick="fire(0)" >Fire 1</button>
+                <div class="input-container">
+                    <label for="tank1_power">Power</label>
+                    <input id = "tank1_power" class="range" type="range" placeholder="Enter tank 1 power" value=50>
+                    <span class="range_display" id="range_1_1"></span>
+                </div>
+                <div class="input-container">
+                    <label for="tank1_angle">Angle</label>
+                    <input id = "tank1_angle" class="range" type="range" placeholder="Enter tank 1 angle" value=45 min="0" max="180">
+                    <span class="range_display" id="range_1_2"></span>
+                </div>
+            </div>
+            <div class="player_details">
+                <button id="button2" class="fire-button" onclick="fire(1)" >Fire 2</button>
+                <div class="input-container">
+                    <label for="tank2_power">Power</label>
+                    <input id = "tank2_power" class="range" type="range" placeholder="Enter tank 2 power" value=50>
+                    <span class="range_display" id="range_2_1"></span>
+                </div>
+                <div class="input-container">
+                    <label for="tank2_angle">Angle</label>
+                    <input id = "tank2_angle" class="range" type="range" placeholder="Enter tank 1 angle" value=45 min="0" max="180"> 
+                    <span class="range_display" id="range_2_2"></span>
+                </div> 
+            </div>
+        </div>
+        <script src="game.js"></script>
+        <script src="game_core.js"></script>
+    </body>
+</html>
