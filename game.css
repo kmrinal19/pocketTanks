@@ -23,8 +23,8 @@ canvas {
     grid-column-start: 2;
     justify-self: end;
     margin: 0 10px 0 0;
-    width: 30px;
-    height: 25px;
+    width: 30px !important;
+    height: 25px !important;
 }
 .fill_player_details{
     display: none;
@@ -99,6 +99,40 @@ canvas {
 }
 .next_weapon{
     grid-row-start: 5;
+}
+.weapon_select{
+    display: none;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-content: center;
+    background-color: #f1f1f1;
+    width: 1000px;
+    justify-self: center;
+    height: 600px;
+    grid-template-rows: 5% 95%;
+    padding: 15px;
+}
+.player1_weapons{
+    grid-column-start: 1;
+    display: grid;
+    grid-template-rows: 90% 10%;
+    padding: 15px;
+}
+.weapon_list{
+    grid-column-start: 2;
+}
+.right{
+    grid-column-start: 3;
+}
+.player2_weapons{
+    grid-column-start: 3;
+    display: grid;
+    grid-template-rows: 90% 10%;
+    padding: 15px;
+}
+.weapon_selector{
+    display: block;
+    margin: 5px;
 }
 .game-wrapper{
     display: grid;

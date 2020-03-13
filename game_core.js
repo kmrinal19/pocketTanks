@@ -1,9 +1,94 @@
 var myGamePiece,ground,ball,tank,score,score_text,range,range_display
+var player_name,tank_color,weapon_player,fire_player,player1_weapon,player2_weapon,weapon_count,player1_weapon_count,player2_weapon_count
+player_name=["Player 1","Player 2"]
+tank_color=[]
 tank=[]
 score=[0,0]
 score_text=[]
 range=[]
 range_display=[]
+weapon_player=0
+fire_player=0
+weapon_count=0
+player1_weapon=[]
+player2_weapon=[]
+player1_weapon_count=0
+player2_weapon_count=0
+
+var name1 = document.getElementById("player_name_1")
+name1.onchange=function(){
+    document.getElementById("name_head_1").innerHTML=name1.value
+    player_name[0]=name1.value
+}
+var name2 = document.getElementById("player_name_2")
+name2.onchange=function(){
+    document.getElementById("name_head_2").innerHTML=name2.value
+    player_name[1]=name2.value
+}
+function displayGame(){
+    if(weapon_count==6){
+        document.getElementById("weapon_select").style.display="none"
+        document.getElementById("game-starter").style.display="none"
+        document.getElementById("fill_player_details").style.display="none"
+        for(i=0;i<3;i++){
+            document.getElementById("player1_options").innerHTML+="<option id ='player1_options_weapon"+i+"'>"+player1_weapon[i]+"</option>"
+        }
+        for(i=0;i<3;i++){
+            document.getElementById("player2_options").innerHTML+="<option id ='player2_options_weapon"+i+"'>"+player2_weapon[i]+"</option>"
+        }
+        startGame()
+        document.getElementById("game-wrapper").style.display="grid"
+    }
+    else{
+        alert("Please select all weapons")
+    }
+}
+function fill_player_details(){
+    document.getElementById("game-starter").style.display="none"
+    document.getElementById("weapon_select").style.display="none"
+    document.getElementById("fill_player_details").style.display="grid"
+}
+function displayStart(){
+    document.getElementById("game-starter").style.display="grid"
+    document.getElementById("game-wrapper").style.display="none"
+    document.getElementById("fill_player_details").style.display="none"
+    document.getElementById("weapon_select").style.display="none"
+}
+function display_weapon(){
+    document.getElementById("fill_player_details").style.display="none"
+    document.getElementById("weapon_select").style.display="grid"
+    document.getElementById("weapon_player1_name").innerHTML=player_name[0]
+    document.getElementById("weapon_player2_name").innerHTML=player_name[1]
+    let radio_1=document.getElementsByName("radio1")
+    let radio_2=document.getElementsByName("radio2")
+    for(x=0;x<radio_1.length;x++){
+        if(radio_1[x].checked){
+            tank_color[0]=radio_1[x].value
+            break
+        }
+    }
+    for(x=0;x<radio_2.length;x++){
+        if(radio_2[x].checked){
+            tank_color[1]=radio_2[x].value
+            break
+        }
+    }
+}
+function allot_weapon(obj){
+    obj.style.display="none"
+    document.getElementById("weapon_name_"+(weapon_player+1)).innerHTML+="<div>"+obj.value+"</div>"
+    if(weapon_player==0){
+        player1_weapon[player1_weapon_count]=obj.value
+        player1_weapon_count++
+    }
+    else if(weapon_player==1){
+        player2_weapon[player2_weapon_count]=obj.value
+        player2_weapon_count++
+    }
+    weapon_player=!weapon_player+0
+    weapon_count++
+}
+
 range[0]=document.getElementById("tank1_power")
 range[1]=document.getElementById("tank1_angle")
 range[2]=document.getElementById("tank2_power")
@@ -28,11 +113,10 @@ range[2].oninput=function(){
 range[3].oninput=function(){
     range_display[3].innerHTML=range[3].value
 }
-
 function startGame() {
     ground = new component(1000,30,"green",0,370," ")
-    tank[0] = new component(70,35,"images/tank_green.svg",10,335,"image") 
-    tank[1] = new component(70,35,"images/tank_blue.svg",920,335,"image")
+    tank[0] = new component(70,35,"images/tank_"+tank_color[0]+"_1.svg",10,335,"image") 
+    tank[1] = new component(70,35,"images/tank_"+tank_color[1]+"_2.svg",920,335,"image")
     score_text[0] = new component("25px", "Consolas", "black", 30, 20, "text",0)
     score_text[1] = new component("25px", "Consolas", "black", 830, 20, "text",1)
     myGameArea.start();
@@ -81,7 +165,7 @@ function component(width, height, color, x, y, type,optional) {
         else if (this.type == "text") {
             ctx.font = this.width + " " + this.height;
             ctx.fillStyle = color;
-            this.text="Player "+(optional+1)+": "+score[optional]
+            this.text=player_name[optional]+": "+score[optional]
             ctx.fillText(this.text, this.x, this.y);
           }
         else {
@@ -99,6 +183,9 @@ function component(width, height, color, x, y, type,optional) {
 function fire(tank_no){
     document.getElementById("button"+(tank_no+1)).setAttribute("onclick"," ")
     document.getElementById("button"+((!tank_no)+1)).setAttribute("onclick"," ")
+    let elem=document.getElementById("player"+(tank_no+1)+"_options")
+    elem.remove(elem.selectedIndex)
+    weapon_count--
     ball = new component(20,20,"images/ball.svg",tank[tank_no].x+(!tank_no*20),310,"image")    
     var x_enemy= tank[(!tank_no + 0)].x
     var y_enemy= tank[(!tank_no + 0)].y
@@ -117,25 +204,28 @@ function fire(tank_no){
             clearInterval(proj)
             tankHit(!tank_no+0)
             ball.image.src=" "
-            document.getElementById("button"+(tank_no+1)).setAttribute("onclick","fire("+(tank_no)+")")
+            //document.getElementById("button"+(tank_no+1)).setAttribute("onclick","fire("+(tank_no)+")")
             document.getElementById("button"+((!tank_no)+1)).setAttribute("onclick","fire("+((!tank_no)+0)+")")
             score[tank_no]+=50
+            checkwin()
             //alert(x_enemy+" "+ball.x+" hit")
         }
         else if(ball.x >= (x_own-10) && ball.x<=(x_own+62) && ball.y >= y_own && ball.y<=(y_own+55)){
             clearInterval(proj)
             tankHit(tank_no+0)
             ball.image.src=" "
-            document.getElementById("button"+(tank_no+1)).setAttribute("onclick","fire("+(tank_no)+")")
+            //document.getElementById("button"+(tank_no+1)).setAttribute("onclick","fire("+(tank_no)+")")
             document.getElementById("button"+((!tank_no)+1)).setAttribute("onclick","fire("+((!tank_no)+0)+")")
             score[(!tank_no)+0]+=50
+            checkwin()
             //alert(x_own+" "+ball.x+" hit")
         }
         else if(ball.x>=1000 || ball.y>360){
             clearInterval(proj)
             ball.image.src=" "
-            document.getElementById("button"+(tank_no+1)).setAttribute("onclick","fire("+(tank_no)+")")
+            //document.getElementById("button"+(tank_no+1)).setAttribute("onclick","fire("+(tank_no)+")")
             document.getElementById("button"+((!tank_no)+1)).setAttribute("onclick","fire("+((!tank_no)+0)+")")
+            checkwin()
             //alert(x_own+" "+ball.x)
         }
     }
@@ -170,4 +260,18 @@ function updateGameArea() {
         ball.update()
         ball.newPos()
     }
+  }
+
+  function checkwin(){
+      if(weapon_count==0){
+          if(score[0]>score[1]){
+              alert(player_name[0]+" wins")
+          }
+          else if(score[0]<score[1]){
+              alert(player_name[1]+" wins")
+          }
+          else{
+              alert("Game is tied")
+          }
+      }
   }

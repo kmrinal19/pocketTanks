@@ -21,19 +21,19 @@
                     <div>Select tank color: </div>
                     <br/>
                     <label class="radio_container">
-                        <input type="radio"  name="radio1" class="radio_input">
+                        <input type="radio"  name="radio1" class="radio_input" value="blue">
                         <span class="checkmark blue"></span>
                       </label>
                       <label class="radio_container">
-                        <input type="radio" checked="checked" name="radio1" class="radio_input">
+                        <input type="radio" checked="checked" name="radio1" class="radio_input" value="green">
                         <span class="checkmark green"></span>
                       </label>
                       <label class="radio_container">
-                        <input type="radio"  name="radio1" class="radio_input">
+                        <input type="radio"  name="radio1" class="radio_input" value="red">
                         <span class="checkmark red"></span>
                       </label>
                       <label class="radio_container">
-                        <input type="radio" name="radio1" class="radio_input">
+                        <input type="radio" name="radio1" class="radio_input" value="yellow">
                         <span class="checkmark yellow"></span>
                       </label>
                 </div>
@@ -48,30 +48,57 @@
                     <div>Select tank color: </div>
                     <br/>
                     <label class="radio_container">
-                        <input type="radio" checked="checked" name="radio2" class="radio_input">
+                        <input type="radio" checked="checked" name="radio2" class="radio_input" value="blue">
                         <span class="checkmark blue"></span>
                       </label>
                       <label class="radio_container">
-                        <input type="radio" name="radio2" class="radio_input">
+                        <input type="radio" name="radio2" class="radio_input" value="green">
                         <span class="checkmark green"></span>
                       </label>
                       <label class="radio_container">
-                        <input type="radio"  name="radio2" class="radio_input">
+                        <input type="radio"  name="radio2" class="radio_input" value="red">
                         <span class="checkmark red"></span>
                       </label>
                       <label class="radio_container">
-                        <input type="radio" name="radio2" class="radio_input">
+                        <input type="radio" name="radio2" class="radio_input" value="yellow">
                         <span class="checkmark yellow"></span>
                       </label>
                 </div>
                 <div class="next_weapon"><button id="display_weapon" onclick="display_weapon()">Next</button></div>
             </div>
         </div>
+        <div class="weapon_select" id="weapon_select">
+            <button class="right close " onclick="displayStart()">X</button>
+            <div class="player1_weapons">
+                <div>
+                    <h3 id="weapon_player1_name">Player 1</h3>
+                    <div class="weapon_name" id="weapon_name_1"></div>
+                </div>
+                <div><button onclick="fill_player_details()"> Back</button></div>
+            </div>
+            <div class="weapon_list">
+                <h3 >Weapons</h3>
+                <div class="weapon_list_container">
+                    <button class="weapon_selector" id="weapon_selector_1" value="weapon 1" onclick="allot_weapon(this)">Weapon 1</button>
+                    <button class="weapon_selector" id="weapon_selector_2" value="weapon 2" onclick="allot_weapon(this)"> Weapon 2</button>
+                    <button class="weapon_selector" id="weapon_selector_3" value="weapon 3" onclick="allot_weapon(this)">Weapon 3</button>
+                    <button class="weapon_selector" id="weapon_selector_4" value="weapon 4" onclick="allot_weapon(this)">Weapon 4</button>
+                    <button class="weapon_selector" id="weapon_selector_5" value="weapon 5" onclick="allot_weapon(this)">Weapon 5</button>
+                    <button class="weapon_selector" id="weapon_selector_6" value="weapon 6" onclick="allot_weapon(this)">Weapon 6</button>
+                </div>
+            </div>
+            <div class="player2_weapons">
+                <div>
+                    <h3 id="weapon_player2_name">Player 2</h3>
+                    <div class="weapon_name" id="weapon_name_2"></div>
+                </div>
+                <div><button onclick="displayGame()">start Game</button></div>
+            </div>
+        </div>
         <div class="game-wrapper" id="game-wrapper">
             <button class="close" onclick="displayStart()">X</button>
             <div id="canvas-wrapper" class="canvas-wrapper"></div>
             <div class="player_details">
-                <button id="button1" class="fire-button" onclick="fire(0)" >Fire 1</button>
                 <div class="input-container">
                     <label for="tank1_power">Power</label>
                     <input id = "tank1_power" class="range" type="range" placeholder="Enter tank 1 power" value=50>
@@ -82,9 +109,13 @@
                     <input id = "tank1_angle" class="range" type="range" placeholder="Enter tank 1 angle" value=45 min="0" max="180">
                     <span class="range_display" id="range_1_2"></span>
                 </div>
+                <div>
+                    <select id ="player1_options">
+                    </select>
+                    <button id="button1" class="fire-button" onclick="fire(0)" >Fire 1</button>
+                </div>
             </div>
             <div class="player_details">
-                <button id="button2" class="fire-button" onclick="fire(1)" >Fire 2</button>
                 <div class="input-container">
                     <label for="tank2_power">Power</label>
                     <input id = "tank2_power" class="range" type="range" placeholder="Enter tank 2 power" value=50>
@@ -94,10 +125,14 @@
                     <label for="tank2_angle">Angle</label>
                     <input id = "tank2_angle" class="range" type="range" placeholder="Enter tank 1 angle" value=45 min="0" max="180"> 
                     <span class="range_display" id="range_2_2"></span>
+                </div>
+                <div>
+                    <select id ="player2_options">
+                    </select>
+                    <button id="button2" class="fire-button" onclick="" >Fire 2</button>
                 </div> 
             </div>
         </div>
-        <script src="game.js"></script>
         <script src="game_core.js"></script>
     </body>
 </html>
