@@ -1,4 +1,5 @@
 var myGamePiece,ground,ball,tank,score,score_text,range,range_display,wind_vel,wind_dir
+var speed,angle,speed_x,speed_y
 var player_name,tank_color,weapon_player,fire_player,player1_weapon,player2_weapon,weapon_count,player1_weapon_count,player2_weapon_count,weapon_hit
 player_name=["Player 1","Player 2"]
 tank_color=[]
@@ -15,7 +16,7 @@ player2_weapon=[]
 player1_weapon_count=0
 player2_weapon_count=0
 wind_dir=Math.floor(Math.random()*2)
-wind_vel=Math.floor(Math.random()*21)
+wind_vel=Math.floor(Math.random()*11)
 weapon_hit={"weapon 1":25,"weapon 2":30,"weapon 3":35,"weapon 4":40,"weapon 5":50,"weapon 6":70}
 var name1 = document.getElementById("player_name_1")
 name1.onchange=function(){
@@ -51,11 +52,11 @@ function fill_player_details(){
     document.getElementById("fill_player_details").style.display="grid"
 }
 function displayStart(){
+    resetGame()
     document.getElementById("game-starter").style.display="grid"
     document.getElementById("game-wrapper").style.display="none"
     document.getElementById("fill_player_details").style.display="none"
     document.getElementById("weapon_select").style.display="none"
-    resetGame()
 }
 function display_weapon(){
     document.getElementById("fill_player_details").style.display="none"
@@ -151,6 +152,9 @@ function component(width, height, color, x, y, type,optional) {
     if (type == "image") {
         this.image = new Image();
         this.image.src = color;
+        if(optional=="rotate"){
+            this.angle=-angle*Math.pow(-1,fire_player)-(Math.PI)*fire_player
+        }
     }
     this.width = width;
     this.height = height;  
@@ -161,11 +165,18 @@ function component(width, height, color, x, y, type,optional) {
     this.time=0    
     this.update = function() {
         ctx = myGameArea.context;
-        if (type == "image") {
+        if (type == "image" && optional!="rotate") {
             ctx.drawImage(this.image, 
                 this.x, 
                 this.y,
                 this.width, this.height);
+        }
+        else if (type == "image" && optional=="rotate") {
+            ctx.save()
+            ctx.translate(this.x,this.y)
+            ctx.rotate(this.angle)
+            ctx.drawImage(this.image,this.width/-2,this.height/-2,this.width,this.height)
+            ctx.restore()
         }
         else if (this.type == "text") {
             if(optional==0 || optional==1){
@@ -203,16 +214,16 @@ function fire(tank_no){
     let elem=document.getElementById("player"+(tank_no+1)+"_options")
     let hit_weapon=document.getElementById("player"+(tank_no+1)+"_options").value
     elem.remove(elem.selectedIndex)
-    weapon_count--
-    ball = new component(20,20,"images/ball.svg",tank[tank_no].x+(!tank_no*20),310,"image")    
+    weapon_count--   
     var x_enemy= tank[(!tank_no + 0)].x
     var y_enemy= tank[(!tank_no + 0)].y
     var x_own= tank[(tank_no + 0)].x
     var y_own= tank[(tank_no + 0)].y
-    var speed=document.getElementById("tank"+(tank_no+1)+"_power").value*0.5
-    var angle=document.getElementById("tank"+(tank_no+1)+"_angle").value
-    var speed_x=speed*Math.cos(3.14/180.0*angle)+Math.pow(-1,wind_dir)*wind_vel*0.5*Math.pow(-1,tank_no)
-    var speed_y=speed*Math.sin(3.14/180.0*angle)
+    speed=document.getElementById("tank"+(tank_no+1)+"_power").value*0.5
+    angle=document.getElementById("tank"+(tank_no+1)+"_angle").value*(Math.PI/180)
+    speed_x=speed*Math.cos(angle)+Math.pow(-1,wind_dir)*wind_vel*0.5*Math.pow(-1,tank_no)
+    speed_y=speed*Math.sin(angle)
+    ball = new component(20,20,"images/rocket.svg",tank[tank_no].x+(!tank_no*20),310,"image","rotate") 
     var proj=setInterval(project,20)
     function project(){
         ball.time+=0.5
@@ -226,9 +237,11 @@ function fire(tank_no){
             document.getElementById("button"+((!tank_no)+1)).setAttribute("onclick","fire("+((!tank_no)+0)+")")
             crash_sound.play()
             score[tank_no]+=weapon_hit[hit_weapon]
+            ball=null
             checkwin()
+            fire_player=(!fire_player)+0
             wind_dir=Math.floor(Math.random()*2)
-            wind_vel=Math.floor(Math.random()*21)
+            wind_vel=Math.floor(Math.random()*11)
             //alert(x_enemy+" "+ball.x+" hit")
         }
         else if(ball.x >= (x_own-10) && ball.x<=(x_own+62) && ball.y >= y_own && ball.y<=(y_own+55)){
@@ -239,9 +252,11 @@ function fire(tank_no){
             document.getElementById("button"+((!tank_no)+1)).setAttribute("onclick","fire("+((!tank_no)+0)+")")
             crash_sound.play()
             score[(!tank_no)+0]+=weapon_hit[hit_weapon]
+            fire_player=(!fire_player)+0
+            ball=null
             checkwin()
             wind_dir=Math.floor(Math.random()*2)
-            wind_vel=Math.floor(Math.random()*21)
+            wind_vel=Math.floor(Math.random()*11)
             //alert(x_own+" "+ball.x+" hit")
         }
         else if(ball.x>=1000 || ball.y>360){
@@ -249,9 +264,11 @@ function fire(tank_no){
             ball.image.src=" "
             //document.getElementById("button"+(tank_no+1)).setAttribute("onclick","fire("+(tank_no)+")")
             document.getElementById("button"+((!tank_no)+1)).setAttribute("onclick","fire("+((!tank_no)+0)+")")
+            fire_player=(!fire_player)+0
+            ball=null
             checkwin()
             wind_dir=Math.floor(Math.random()*2)
-            wind_vel=Math.floor(Math.random()*21)
+            wind_vel=Math.floor(Math.random()*11)
             //alert(x_own+" "+ball.x)
         }
     }
@@ -284,6 +301,7 @@ function updateGameArea() {
     score_text[1].update()
     wind.update()
     if(ball){
+        ball.angle+=(2*angle/(4*speed_y))*Math.pow(-1,fire_player)
         ball.update()
         ball.newPos()
     }
@@ -300,12 +318,12 @@ function updateGameArea() {
           else{
               alert("Game is tied")
           }
-          resetGame()
           displayStart()
       }
   }
 
   function resetGame(){
+    ball=null
     player_name=["Player 1","Player 2"]
     tank=[]
     score=[0,0]
@@ -317,6 +335,7 @@ function updateGameArea() {
     player2_weapon=[]
     player1_weapon_count=0
     player2_weapon_count=0
+    angle=0
     document.getElementById("weapon_name_1").innerHTML=""
     document.getElementById("weapon_name_2").innerHTML=""
     for(i=0;i<6;i++){
@@ -346,6 +365,7 @@ function updateGameArea() {
     for(i=0;i<l2;i++){
         y2.remove(0)
     }
+    myGameArea.stop()
   }
 
   function sound(src) {
