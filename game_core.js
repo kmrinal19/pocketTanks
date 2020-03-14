@@ -1,4 +1,4 @@
-var myGamePiece,ground,ball,tank,score,score_text,range,range_display
+var myGamePiece,ground,ball,tank,score,score_text,range,range_display,wind_vel,wind_dir
 var player_name,tank_color,weapon_player,fire_player,player1_weapon,player2_weapon,weapon_count,player1_weapon_count,player2_weapon_count,weapon_hit
 player_name=["Player 1","Player 2"]
 tank_color=[]
@@ -14,6 +14,8 @@ player1_weapon=[]
 player2_weapon=[]
 player1_weapon_count=0
 player2_weapon_count=0
+wind_dir=Math.floor(Math.random()*2)
+wind_vel=Math.floor(Math.random()*21)
 weapon_hit={"weapon 1":25,"weapon 2":30,"weapon 3":35,"weapon 4":40,"weapon 5":50,"weapon 6":70}
 var name1 = document.getElementById("player_name_1")
 name1.onchange=function(){
@@ -173,7 +175,13 @@ function component(width, height, color, x, y, type,optional) {
                 ctx.fillText(this.text, this.x, this.y);
             }
             else if(optional=="wind"){
-                this.text="wind : "
+                let dir
+                if(wind_dir==0)
+                    dir="right"
+                else if(wind_dir==1){
+                    dir="left"
+                }
+                this.text="wind : "+wind_vel+" "+dir
                 ctx.fillText(this.text, this.x, this.y);
             }
           }
@@ -203,7 +211,7 @@ function fire(tank_no){
     var y_own= tank[(tank_no + 0)].y
     var speed=document.getElementById("tank"+(tank_no+1)+"_power").value*0.5
     var angle=document.getElementById("tank"+(tank_no+1)+"_angle").value
-    var speed_x=speed*Math.cos(3.14/180.0*angle)
+    var speed_x=speed*Math.cos(3.14/180.0*angle)+Math.pow(-1,wind_dir)*wind_vel*0.5*Math.pow(-1,tank_no)
     var speed_y=speed*Math.sin(3.14/180.0*angle)
     var proj=setInterval(project,20)
     function project(){
@@ -219,6 +227,8 @@ function fire(tank_no){
             crash_sound.play()
             score[tank_no]+=weapon_hit[hit_weapon]
             checkwin()
+            wind_dir=Math.floor(Math.random()*2)
+            wind_vel=Math.floor(Math.random()*21)
             //alert(x_enemy+" "+ball.x+" hit")
         }
         else if(ball.x >= (x_own-10) && ball.x<=(x_own+62) && ball.y >= y_own && ball.y<=(y_own+55)){
@@ -230,6 +240,8 @@ function fire(tank_no){
             crash_sound.play()
             score[(!tank_no)+0]+=weapon_hit[hit_weapon]
             checkwin()
+            wind_dir=Math.floor(Math.random()*2)
+            wind_vel=Math.floor(Math.random()*21)
             //alert(x_own+" "+ball.x+" hit")
         }
         else if(ball.x>=1000 || ball.y>360){
@@ -238,6 +250,8 @@ function fire(tank_no){
             //document.getElementById("button"+(tank_no+1)).setAttribute("onclick","fire("+(tank_no)+")")
             document.getElementById("button"+((!tank_no)+1)).setAttribute("onclick","fire("+((!tank_no)+0)+")")
             checkwin()
+            wind_dir=Math.floor(Math.random()*2)
+            wind_vel=Math.floor(Math.random()*21)
             //alert(x_own+" "+ball.x)
         }
     }
