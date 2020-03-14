@@ -181,7 +181,7 @@ function component(width, height, color, x, y, type,optional) {
                 else if(wind_dir==1){
                     dir="left"
                 }
-                this.text="wind : "+wind_vel+" "+dir
+                this.text="wind : "+dir
                 ctx.fillText(this.text, this.x, this.y);
             }
           }
@@ -334,6 +334,18 @@ function updateGameArea() {
     name2.value="Player 2"
     document.getElementById("name_head_1").innerHTML=name1.value
     document.getElementById("name_head_2").innerHTML=name2.value
+    document.getElementById("button1").setAttribute("onclick","fire(0)")
+    document.getElementById("button2").setAttribute("onclick"," ")
+    let y1= document.getElementById("player1_options")
+    let y2= document.getElementById("player2_options")
+    let l1=y1.length
+    let l2=y2.length
+    for(i=0;i<l1;i++){
+        y1.remove(0)
+    }
+    for(i=0;i<l2;i++){
+        y2.remove(0)
+    }
   }
 
   function sound(src) {
