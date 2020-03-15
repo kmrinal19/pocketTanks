@@ -53,6 +53,7 @@ function fill_player_details(){
 }
 function displayStart(){
     resetGame()
+    document.getElementById("overlay-container").style.display="none"
     document.getElementById("game-starter").style.display="grid"
     document.getElementById("game-wrapper").style.display="none"
     document.getElementById("fill_player_details").style.display="none"
@@ -310,17 +311,16 @@ function updateGameArea() {
   function checkwin(){
       if(weapon_count==0){
           if(score[0]>score[1]){
-              alert(player_name[0]+" wins")
+              win(0)
           }
           else if(score[0]<score[1]){
-              alert(player_name[1]+" wins")
+              win(1)
           }
           else{
-              alert("Game is tied")
-          }
-          displayStart()
-      }
-  }
+              win(-1)
+            }
+        }
+    }
 
   function resetGame(){
     ball=null
@@ -381,4 +381,14 @@ function updateGameArea() {
     this.stop = function(){
         this.sound.pause();
     }    
+}
+
+function win(winner){
+    document.getElementById("overlay-container").style.display="grid"
+    if(winner>=0){
+        document.getElementById("overlay").innerHTML="<div class='declare_winner'><div>"+player_name[winner]+" wins</div><button onclick='displayStart()'>Continue</button></div>"
+    }
+    else{
+        document.getElementById("overlay").innerHTML="<div class='declare_winner'><div>The game is tied</div><button onclick='displayStart()'>Continue</button></div>"
+    }
 }

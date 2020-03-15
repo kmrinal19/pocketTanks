@@ -4,6 +4,9 @@
         <link rel="stylesheet" type="text/css" href="game.css">
     </head>
     <body>
+        <div class="overlay-container" id="overlay-container">
+            <div class="overlay" id="overlay"></div>
+        </div>
         <div class="game-starter" id="game-starter">
             <button class="start_buttons" id="start_game" onclick="fill_player_details()">Start Game</button>
             <button class="start_buttons" id="option_game" onclick="displayOptions()">Options</button>
@@ -96,7 +99,7 @@
             </div>
         </div>
         <div class="game-wrapper" id="game-wrapper">
-            <button class="close" onclick="displayStart()">X</button>
+            <button class="close super_button" onclick="displayStart()">X</button>
             <div id="canvas-wrapper" class="canvas-wrapper"></div>
             <div class="player_details">
                 <div class="input-container">
