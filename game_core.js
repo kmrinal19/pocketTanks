@@ -33,6 +33,14 @@ name2.onchange=function(){
     document.getElementById("name_head_2").innerHTML=name2.value
     player_name[1]=name2.value
 }
+var weapon_drop_1=document.getElementById("player1_options")
+var weapon_drop_2=document.getElementById("player2_options")
+weapon_drop_1.onchange=function(){
+    document.getElementById("show_weapon_1").src="images/"+weapon_show_src[weapon_drop_1.value]
+}
+weapon_drop_2.onchange=function(){
+    document.getElementById("show_weapon_2").src="images/"+weapon_show_src[weapon_drop_2.value]
+}
 function displayGame(){
     if(weapon_count==10){
         document.getElementById("weapon_select").style.display="none"
@@ -45,6 +53,8 @@ function displayGame(){
             document.getElementById("player2_options").innerHTML+="<option id ='player2_options_weapon"+i+"'>"+player2_weapon[i]+"</option>"
         }
         startGame()
+        document.getElementById("show_weapon_1").src="images/"+weapon_show_src[weapon_drop_1.value]
+        document.getElementById("show_weapon_2").src="images/"+weapon_show_src[weapon_drop_2.value]
         document.getElementById("game-wrapper").style.display="grid"
     }
     else{
@@ -52,6 +62,7 @@ function displayGame(){
     }
 }
 function fill_player_details(){
+    resetGame()
     document.getElementById("game-starter").style.display="none"
     document.getElementById("weapon_select").style.display="none"
     document.getElementById("fill_player_details").style.display="grid"
@@ -372,7 +383,7 @@ function updateGameArea() {
 
   function resetGame(){
     ball=null
-    player_name=["Player 1","Player 2"]
+    //player_name=["Player 1","Player 2"]
     tank=[]
     score=[0,0]
     score_text=[]
@@ -395,8 +406,8 @@ function updateGameArea() {
     range_display[1].innerHTML=range[1].value
     range_display[2].innerHTML=range[2].value
     range_display[3].innerHTML=range[3].value
-    name1.value="Player 1"
-    name2.value="Player 2"
+    //name1.value="Player 1"
+    //name2.value="Player 2"
     document.getElementById("name_head_1").innerHTML=name1.value
     document.getElementById("name_head_2").innerHTML=name2.value
     document.getElementById("button1").setAttribute("onclick","fire(0)")

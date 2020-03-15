@@ -18,7 +18,7 @@
                 <h3 class="name_head" id="name_head_1">Player 1</h3>
                 <div class="input-container">
                     <label for="player_name_1">Name</label>
-                    <input id = "player_name_1" class="" type="text" placeholder="Enter player 1 name" value="Player 1">
+                    <input id = "player_name_1" class="" type="text" placeholder="Enter player 1 name" value="Player 1" maxlength="16">
                 </div>
                 <div class="all_radio_container">
                     <div>Select tank color: </div>
@@ -45,7 +45,7 @@
                 <h3 class="name_head" id="name_head_2">Player 2</h3>
                 <div class="input-container">
                     <label for="player_name_2">Name</label>
-                    <input id = "player_name_2" class="" type="text" placeholder="Enter player 2 name" value="Player 2">
+                    <input id = "player_name_2" class="" type="text" placeholder="Enter player 2 name" value="Player 2" maxlength="16">
                 </div>
                 <div class="all_radio_container">
                     <div>Select tank color: </div>
@@ -109,9 +109,12 @@
                     <input id = "tank1_angle" class="range" type="range" placeholder="Enter tank 1 angle" value=45 min="0" max="90">
                     <span class="range_display" id="range_1_2"></span>
                 </div>
-                <div>
-                    <select id ="player1_options">
-                    </select>
+                <div class="bottom_container">
+                    <div class="img_weapon_container"> 
+                        <select id ="player1_options">
+                        </select>
+                        <img class="show_weapon" id="show_weapon_1" src="images/missile.svg"/>
+                    </div>
                     <button id="button1" class="fire-button" onclick="fire(0)" >Fire 1</button>
                 </div>
             </div>
@@ -126,9 +129,12 @@
                     <input id = "tank2_angle" class="range" type="range" placeholder="Enter tank 1 angle" value=45 min="0" max="90"> 
                     <span class="range_display" id="range_2_2"></span>
                 </div>
-                <div>
-                    <select id ="player2_options">
-                    </select>
+                <div class="bottom_container">
+                    <div class="img_weapon_container">
+                        <select id ="player2_options">
+                        </select>
+                        <img class="show_weapon" id="show_weapon_2" src="images/missile.svg"/>
+                    </div>
                     <button id="button2" class="fire-button" onclick="" >Fire 2</button>
                 </div> 
             </div>

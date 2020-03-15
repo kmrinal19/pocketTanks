@@ -198,6 +198,23 @@ canvas {
 .fire-button{
 
 }
+.bottom_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bottom_container > div{
+    margin: 10px;
+}
+.img_weapon_container{
+    border: 1px solid black;
+    display: flex;
+}
+.show_weapon{
+    width: 20px;
+    height: 20px;
+    border-left: 1px solid black;
+}
 .range {
     -webkit-appearance: none;
     width: 50%;
