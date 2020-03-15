@@ -1,6 +1,12 @@
 var myGamePiece,ground,ball,tank,score,score_text,range,range_display,wind_vel,wind_dir
 var speed,angle,speed_x,speed_y
 var player_name,tank_color,weapon_player,fire_player,player1_weapon,player2_weapon,weapon_count,player1_weapon_count,player2_weapon_count,weapon_hit
+var name_weapon,weapon_src,weapon_show_src
+name_weapon=["water blast","dynamite","grenade","canon ball","missile"]
+weapon_small=["dynamite","grenade","canon ball"]
+weapon_hit={"water blast":25,"dynamite":30,"grenade":35,"canon ball":40,"missile":50}
+weapon_src={"water blast":"water_blast.svg","dynamite":"dynamite.svg","grenade":"grenade.svg","canon ball":"canon_ball.svg","missile":"missile.svg"}
+weapon_show_src={"water blast":"water_blast.svg","dynamite":"dynamite.svg","grenade":"grenade_ver.svg","canon ball":"canon_ball_ver.svg","missile":"missile_ver.svg"}
 player_name=["Player 1","Player 2"]
 tank_color=[]
 tank=[]
@@ -17,7 +23,6 @@ player1_weapon_count=0
 player2_weapon_count=0
 wind_dir=Math.floor(Math.random()*2)
 wind_vel=Math.floor(Math.random()*11)
-weapon_hit={"weapon 1":25,"weapon 2":30,"weapon 3":35,"weapon 4":40,"weapon 5":50,"weapon 6":70}
 var name1 = document.getElementById("player_name_1")
 name1.onchange=function(){
     document.getElementById("name_head_1").innerHTML=name1.value
@@ -29,14 +34,14 @@ name2.onchange=function(){
     player_name[1]=name2.value
 }
 function displayGame(){
-    if(weapon_count==6){
+    if(weapon_count==10){
         document.getElementById("weapon_select").style.display="none"
         document.getElementById("game-starter").style.display="none"
         document.getElementById("fill_player_details").style.display="none"
-        for(i=0;i<3;i++){
+        for(i=0;i<5;i++){
             document.getElementById("player1_options").innerHTML+="<option id ='player1_options_weapon"+i+"'>"+player1_weapon[i]+"</option>"
         }
-        for(i=0;i<3;i++){
+        for(i=0;i<5;i++){
             document.getElementById("player2_options").innerHTML+="<option id ='player2_options_weapon"+i+"'>"+player2_weapon[i]+"</option>"
         }
         startGame()
@@ -78,10 +83,23 @@ function display_weapon(){
             break
         }
     }
+    let wls = document.getElementById("weapon_list_container")
+    for(i=0;i<10;i++){
+        let j = Math.floor(Math.random()*name_weapon.length)
+        let name = name_weapon[j]
+        wls.innerHTML+="<div class='weapon_sel_container' id='wsc"+i+"'>\
+                        <button class='weapon_selector' id='weapon_selector_"+(j+1)+"' value='"+name+"' onclick='allot_weapon(this,"+i+")'>"+name+"</button>\
+                        <img class='weapon_image'src='images/"+weapon_show_src[name]+"'/>\
+                        </div>"
+    }
 }
-function allot_weapon(obj){
-    obj.style.display="none"
-    document.getElementById("weapon_name_"+(weapon_player+1)).innerHTML+="<div>"+obj.value+"</div>"
+function allot_weapon(obj,i){
+    var obj2 = document.getElementById("wsc"+i)
+    obj2.parentNode.removeChild(obj2)
+    document.getElementById("weapon_name_"+(weapon_player+1)).innerHTML+="<div class='weapon_name'>\
+                                                                            <div class='weapon_selector'>"+obj.value+"</div>\
+                                                                            <img class='weapon_image'src='images/"+weapon_show_src[obj.value]+"'/>\
+                                                                        </div>"
     if(weapon_player==0){
         player1_weapon[player1_weapon_count]=obj.value
         player1_weapon_count++
@@ -224,7 +242,15 @@ function fire(tank_no){
     angle=document.getElementById("tank"+(tank_no+1)+"_angle").value*(Math.PI/180)
     speed_x=speed*Math.cos(angle)+Math.pow(-1,wind_dir)*wind_vel*0.5*Math.pow(-1,tank_no)
     speed_y=speed*Math.sin(angle)
-    ball = new component(20,20,"images/rocket.svg",tank[tank_no].x+(!tank_no*20),310,"image","rotate") 
+    let weapon_img_src="images/"+weapon_src[hit_weapon]
+    let enlarge=0
+    if(weapon_small.indexOf(hit_weapon)>=0){
+        enlarge=1
+    }
+    else{
+        enlarge=0
+    }
+    ball = new component(enlarge*10+20,enlarge*10+20,weapon_img_src,tank[tank_no].x+(!tank_no*20),310,"image","rotate") 
     var proj=setInterval(project,20)
     function project(){
         ball.time+=0.5
@@ -338,9 +364,7 @@ function updateGameArea() {
     angle=0
     document.getElementById("weapon_name_1").innerHTML=""
     document.getElementById("weapon_name_2").innerHTML=""
-    for(i=0;i<6;i++){
-        document.getElementById("weapon_selector_"+(i+1)).style.display="block"
-    }
+    document.getElementById("weapon_list_container").innerHTML=""
     range[0].value=50
     range[1].value=45
     range[2].value=50

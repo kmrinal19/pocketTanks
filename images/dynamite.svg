@@ -1,0 +1,11 @@
+<svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="-0.05" y="0.05" width="15.8025" height="2.9" rx="1.45" transform="matrix(-1 0 0 1 15.8025 10)" fill="#E03D26" stroke="black" stroke-width="0.1"/>
+<rect x="-0.05" y="0.05" width="15.8025" height="2.9" rx="1.45" transform="matrix(-1 0 0 1 15.8025 7)" fill="#E03D26" stroke="black" stroke-width="0.1"/>
+<rect width="2.51091" height="3" transform="matrix(-1 0 0 1 13.3915 7)" fill="#1A1818"/>
+<rect width="2.51091" height="3" transform="matrix(-1 0 0 1 5.02183 7)" fill="#1A1818"/>
+<rect width="2.51091" height="3" transform="matrix(-1 0 0 1 13.3915 10)" fill="#1A1818"/>
+<rect width="2.51091" height="3" transform="matrix(-1 0 0 1 5.02183 10)" fill="#1A1818"/>
+<path d="M15.9025 8.5C29.7125 13 3.34789 14.5 13.3915 16.5M15.9025 11.5C29.7125 16 -0.418483 14.5 9.62517 16.5" stroke="black" stroke-width="0.1"/>
+<path d="M9 15L9.44903 16.0365H10.9021L9.72654 16.6771L10.1756 17.7135L9 17.0729L7.82443 17.7135L8.27346 16.6771L7.09789 16.0365H8.55097L9 15Z" fill="#E9582A"/>
+<path d="M13 15L13.449 16.0365H14.9021L13.7265 16.6771L14.1756 17.7135L13 17.0729L11.8244 17.7135L12.2735 16.6771L11.0979 16.0365H12.551L13 15Z" fill="#E9582A"/>
+</svg>

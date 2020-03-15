@@ -1,5 +1,6 @@
 html,body{
     display: grid;
+    box-sizing: border-box;
 }
 canvas {
     /*border:1px solid #d3d3d3;*/
@@ -115,11 +116,27 @@ canvas {
 .player1_weapons{
     grid-column-start: 1;
     display: grid;
-    grid-template-rows: 90% 10%;
+    grid-template-rows: 15% 75% 10%;
     padding: 15px;
+    width: 100%;
+    justify-items: center;
+}
+.weapon_name{
+    margin: 15px 0;
+    padding: 0;
+    border: 2px solid black;
+    height: 30px;
+    width: 125px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 80% 20%;
 }
 .weapon_list{
     grid-column-start: 2;
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 15% 85%;
 }
 .right{
     grid-column-start: 3;
@@ -127,12 +144,33 @@ canvas {
 .player2_weapons{
     grid-column-start: 3;
     display: grid;
-    grid-template-rows: 90% 10%;
+    grid-template-rows: 15% 75% 10%;
     padding: 15px;
+    width: 100%;
+    justify-items: center;
+}
+.weapon_sel_container{
+    margin: 5px;
+    padding: 0;
+    border: 1px solid black;
+    height: 28px;
+    width: 110px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 80% 20%;
 }
 .weapon_selector{
-    display: block;
-    margin: 5px;
+    width: 100%;
+    background-color: #f1f1f1;
+    height: 100%;
+    border-right: 1px solid black;
+    text-align: center;
+}
+.weapon_image{
+    margin: 0;
+    padding: 0;
+    display: inline;
 }
 .game-wrapper{
     display: grid;
