@@ -69,6 +69,7 @@ function display_weapon(){
     document.getElementById("weapon_select").style.display="grid"
     document.getElementById("weapon_player1_name").innerHTML=player_name[0]
     document.getElementById("weapon_player2_name").innerHTML=player_name[1]
+    document.getElementById("current_weapon_selector").innerHTML="Current player: "+player_name[weapon_player]
     let radio_1=document.getElementsByName("radio1")
     let radio_2=document.getElementsByName("radio2")
     for(x=0;x<radio_1.length;x++){
@@ -109,7 +110,11 @@ function allot_weapon(obj,i){
         player2_weapon_count++
     }
     weapon_player=!weapon_player+0
+    document.getElementById("current_weapon_selector").innerHTML="Current player: "+player_name[weapon_player]
     weapon_count++
+    if(weapon_count==10){
+        document.getElementById("current_weapon_selector").innerHTML="Current player: "
+    }
 }
 
 range[0]=document.getElementById("tank1_power")
@@ -142,7 +147,9 @@ function startGame() {
     tank[1] = new component(70,35,"images/tank_"+tank_color[1]+"_2.svg",920,335,"image")
     score_text[0] = new component("25px", "Consolas", "black", 30, 20, "text",0)
     score_text[1] = new component("25px", "Consolas", "black", 830, 20, "text",1)
-    wind = new component("15px", "Consolas", "black", 830, 100, "text","wind")
+    wind_direct = new component("15px", "Consolas", "black", 800, 100, "text","wind_dir")
+    wind_int = new component("15px", "Consolas", "black", 800, 140, "text","wind_int")
+    player_turn = new component("17px", "Consolas", "black", 420, 30, "text","player_turn")
     crash_sound=new sound("sound/blast.mp3")
     myGameArea.start();
 }
@@ -198,21 +205,34 @@ function component(width, height, color, x, y, type,optional) {
             ctx.restore()
         }
         else if (this.type == "text") {
+            ctx.font = this.width + " " + this.height;
+            ctx.fillStyle = color;
             if(optional==0 || optional==1){
-                ctx.font = this.width + " " + this.height;
-                ctx.fillStyle = color;
                 this.text=player_name[optional]+": "+score[optional]
-                ctx.fillText(this.text, this.x, this.y);
+                ctx.fillText(this.text, this.x, this.y)
             }
-            else if(optional=="wind"){
+            else if(optional=="wind_dir"){
                 let dir
                 if(wind_dir==0)
                     dir="right"
                 else if(wind_dir==1){
                     dir="left"
                 }
-                this.text="wind : "+dir
+                this.text="Wind direction: "+dir
                 ctx.fillText(this.text, this.x, this.y);
+            }
+            else if(optional=="wind_int"){
+                let intensity
+                if(wind_vel>5)
+                    intensity="High"
+                else
+                    intensity="Low"
+                this.text="Wind intensity: "+intensity
+                ctx.fillText(this.text, this.x, this.y)
+            }
+            else if(optional=="player_turn"){
+                this.text="Current Player: "+player_name[fire_player]
+                ctx.fillText(this.text, this.x, this.y)
             }
           }
         else {
@@ -326,7 +346,9 @@ function updateGameArea() {
     ground.update()
     score_text[0].update()
     score_text[1].update()
-    wind.update()
+    wind_direct.update()
+    wind_int.update()
+    player_turn.update()
     if(ball){
         ball.angle+=(2*angle/(4*speed_y))*Math.pow(-1,fire_player)
         ball.update()

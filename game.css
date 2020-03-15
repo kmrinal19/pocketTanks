@@ -137,6 +137,7 @@ canvas {
     display: grid;
     justify-items: center;
     grid-template-rows: 15% 85%;
+    width: 100%;
 }
 .right{
     grid-column-start: 3;
@@ -249,4 +250,8 @@ canvas {
 
 .super_button{
     z-index: 15;
+}
+
+.center{
+    text-align: center;
 }
