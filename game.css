@@ -438,3 +438,27 @@ button{
     background-color: #dedede;
     padding: 8px 12px;
 }
+.instructions{
+    display: none;
+    justify-items: center;
+    align-content: center;
+    background-color: #243665;
+    width: 920px;
+    justify-self: center;
+    height: 520px;
+    grid-template-rows: 5% 20% 75% ;
+    grid-template-columns: 50% 50%;
+    padding: 40px;
+}
+.instructions_head{
+    grid-column-start: span 2;
+    color: white;
+    font-family: 'Concert One', cursive;
+    font-size: 64px;
+}
+.instructions_body{
+    grid-column-start: span 2;
+    color: white;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 20px;
+}

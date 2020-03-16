@@ -63,6 +63,10 @@ function displayGame(){
         alert("Please select all weapons")
     }
 }
+function displayInstructions(){
+    document.getElementById("game-starter").style.display="none"
+    document.getElementById("instructions").style.display="grid"
+}
 function fill_player_details(){
     resetGame()
     document.getElementById("game-starter").style.display="none"
@@ -71,6 +75,7 @@ function fill_player_details(){
 }
 function displayStart(){
     resetGame()
+    document.getElementById("instructions").style.display="none"
     document.getElementById("overlay-container").style.display="none"
     document.getElementById("game-starter").style.display="grid"
     document.getElementById("game-wrapper").style.display="none"
