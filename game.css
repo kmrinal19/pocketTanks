@@ -6,6 +6,9 @@ canvas {
     /*border:1px solid #d3d3d3;*/
     background-color: #f1f1f1;
 }
+button{
+    cursor: pointer;
+}
 .game-starter{
     display: grid;
     justify-items: center;
@@ -67,27 +70,79 @@ canvas {
 .close{
     grid-column-start: 2;
     justify-self: end;
-    margin: 0 10px 0 0;
-    width: 30px !important;
-    height: 25px !important;
+    width: 33px !important;
+    height: 33px !important;
+    color: #EE0E0E;
+    background-color: #dedede;
+    border: none;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
 }
 .fill_player_details{
     display: none;
     justify-items: center;
     align-content: center;
-    background-color: #f1f1f1;
-    width: 1000px;
+    background-color: #243665;
+    width: 920px;
     justify-self: center;
-    height: 600px;
+    height: 520px;
     grid-template-rows: 5% 95%;
     grid-template-columns: 50% 50%;
-    padding: 15px;
+    padding: 40px;
 }
 .player_details_get{
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr 1fr;
+    width: 100%;
+    justify-items: center;
+}
+.player_det_head{
+    font-family: 'Concert One', cursive;
+    font-size: 30px;
+    color: #8BD8BD;
+    align-self: center;
+}
+.input_container{
+    align-self: center;
+    width: 250px;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.player_det_label{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #8BD8BD;
+    margin-right: 5px;
+    height: 20px;
+}
+.player_det_name_in{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    padding-left: 5px;
+    height: 20px;
+    width: 170px;
+    background-color: #dedede;
 }
 .all_radio_container{
+    width: 200px;
+    height: 100px;
+    align-self: center;
+    display: grid;
+    justify-items: center;
+}
+.tank_color_text{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #8BD8BD;
+    width: 170px;
+    height: 25px;
 }
 .radio_container {
     display: inline;
@@ -132,56 +187,80 @@ canvas {
 }
 .red{
     background-color:#D92929;
+    border: 1.5px solid black;
 }
 .yellow{
     background-color: #D9BD29;
+    border: 1.5px solid black;
 }
 .blue{
     background-color: #094363;
+    border: 1.5px solid black;
 }
 .green{
     background-color: #225821;
+    border: 1.5px solid black;
 }
 .next_weapon{
-    grid-row-start: 5;
+    grid-row-start: 4;
+    justify-self: end;
+    margin-right: 60px;
+}
+.button_next{
+    width: 100px !important;
+    height: 40px !important;
+    background-color: #dedede;
+    border: none;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
 }
 .weapon_select{
     display: none;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
     align-content: center;
-    background-color: #f1f1f1;
-    width: 1000px;
+    background-color: #243665;
+    width: 970px;
     justify-self: center;
-    height: 600px;
+    height: 570px;
     grid-template-rows: 5% 95%;
     padding: 15px;
 }
 .player1_weapons{
     grid-column-start: 1;
     display: grid;
-    grid-template-rows: 15% 75% 10%;
+    grid-template-rows: 15% 70% 15%;
     padding: 15px;
     width: 100%;
     justify-items: center;
 }
 .weapon_name{
-    margin: 15px 0;
-    padding: 0;
-    border: 2px solid black;
-    height: 30px;
-    width: 125px;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    grid-template-columns: 80% 20%;
+    margin: 10px 0 !important;
 }
 .weapon_list{
     grid-column-start: 2;
     display: grid;
     justify-items: center;
-    grid-template-rows: 15% 85%;
+    grid-template-rows: 20% 80%;
     width: 100%;
+}
+.weapon_list_head{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+.current_selector{
+    color: #8BD8BD;
+    font-family:'Concert One', cursive ;
+    font-size: 18px;
+}
+.weapon_name_container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 .right{
     grid-column-start: 3;
@@ -189,28 +268,48 @@ canvas {
 .player2_weapons{
     grid-column-start: 3;
     display: grid;
-    grid-template-rows: 15% 75% 10%;
+    grid-template-rows: 15% 70% 15%;
     padding: 15px;
     width: 100%;
     justify-items: center;
 }
+.weapon_list_container{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
 .weapon_sel_container{
-    margin: 5px;
     padding: 0;
     border: 1px solid black;
-    height: 28px;
-    width: 110px;
+    height: 30px;
+    width: 120px;
     display: grid;
     justify-items: center;
     align-items: center;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 75% 25%;
+    background-color: #dedede;
+    margin: 5px;
 }
 .weapon_selector{
     width: 100%;
-    background-color: #f1f1f1;
+    background-color: #dedede;
     height: 100%;
-    border-right: 1px solid black;
+    border: none;
     text-align: center;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 15px;
+}
+.weapon_image_container{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 29px;
+    height: 32px;
+    border-left: 1px solid black;
+    background-color: #dedede;
 }
 .weapon_image{
     margin: 0;
@@ -229,7 +328,7 @@ canvas {
     display: none;
 }
 .canvas-wrapper{
-    min-height: 50vh;
+    height: 400px;;
     display: grid;
     justify-items: center;
     align-items: center;
@@ -240,7 +339,14 @@ canvas {
     text-align: center;
 }
 .fire-button{
-
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border:none;
+    background-color: #F24343;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
 }
 .bottom_container{
     display: flex;
@@ -253,11 +359,17 @@ canvas {
 .img_weapon_container{
     border: 1px solid black;
     display: flex;
+    height: 30px;
+}
+.show_weapon_container{
+    border-left: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .show_weapon{
     width: 20px;
     height: 20px;
-    border-left: 1px solid black;
 }
 .range {
     -webkit-appearance: none;
@@ -311,8 +423,18 @@ canvas {
 
 .super_button{
     z-index: 15;
+    margin-top: 16px;
+    margin-right: 16px;
 }
 
 .center{
     text-align: center;
+}
+.btn{
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    background-color: #dedede;
+    padding: 8px 12px;
 }

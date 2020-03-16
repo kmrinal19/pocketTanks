@@ -103,16 +103,16 @@ function display_weapon(){
         let name = name_weapon[j]
         wls.innerHTML+="<div class='weapon_sel_container' id='wsc"+i+"'>\
                         <button class='weapon_selector' id='weapon_selector_"+(j+1)+"' value='"+name+"' onclick='allot_weapon(this,"+i+")'>"+name+"</button>\
-                        <img class='weapon_image'src='images/"+weapon_show_src[name]+"'/>\
+                        <div class='weapon_image_container'><img class='weapon_image'src='images/"+weapon_show_src[name]+"'/></div>\
                         </div>"
     }
 }
 function allot_weapon(obj,i){
     var obj2 = document.getElementById("wsc"+i)
     obj2.parentNode.removeChild(obj2)
-    document.getElementById("weapon_name_"+(weapon_player+1)).innerHTML+="<div class='weapon_name'>\
-                                                                            <div class='weapon_selector'>"+obj.value+"</div>\
-                                                                            <img class='weapon_image'src='images/"+weapon_show_src[obj.value]+"'/>\
+    document.getElementById("weapon_name_"+(weapon_player+1)).innerHTML+="<div class='weapon_sel_container weapon_name'>\
+                                                                            <button class='weapon_selector'>"+obj.value+"</button>\
+                                                                            <div class='weapon_image_container'><img class='weapon_image'src='images/"+weapon_show_src[obj.value]+"'/></div>\
                                                                         </div>"
     if(weapon_player==0){
         player1_weapon[player1_weapon_count]=obj.value

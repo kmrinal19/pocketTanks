@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Concert+One|Nunito+Sans:400,700|Ubuntu:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="game.css">
     </head>
     <body>
@@ -24,84 +23,90 @@
         <div class="fill_player_details" id="fill_player_details">
             <button class="close" onclick="displayStart()">X</button>
             <div class="player_details_get">
-                <h3 class="name_head" id="name_head_1">Player 1</h3>
-                <div class="input-container">
-                    <label for="player_name_1">Name</label>
-                    <input id = "player_name_1" class="" type="text" placeholder="Enter player 1 name" value="Player 1" maxlength="16">
+                <div class="player_det_head">
+                    <span id="name_head_1">Player 1</span>
+                </div>
+                <div class="input_container">
+                    <label for="player_name_1" class="player_det_label">Name: </label>
+                    <input id = "player_name_1" class="player_det_name_in" type="text" placeholder="Enter player 1 name" value="Player 1" maxlength="16">
                 </div>
                 <div class="all_radio_container">
-                    <div>Select tank color: </div>
-                    <br/>
-                    <label class="radio_container">
-                        <input type="radio"  name="radio1" class="radio_input" value="blue">
-                        <span class="checkmark blue"></span>
-                      </label>
-                      <label class="radio_container">
-                        <input type="radio" checked="checked" name="radio1" class="radio_input" value="green">
-                        <span class="checkmark green"></span>
-                      </label>
-                      <label class="radio_container">
-                        <input type="radio"  name="radio1" class="radio_input" value="red">
-                        <span class="checkmark red"></span>
-                      </label>
-                      <label class="radio_container">
-                        <input type="radio" name="radio1" class="radio_input" value="yellow">
-                        <span class="checkmark yellow"></span>
-                      </label>
+                    <div class="tank_color_text">Select tank color: </div>
+                    <div class="color_container">
+                        <label class="radio_container">
+                            <input type="radio"  name="radio1" class="radio_input" value="blue">
+                            <span class="checkmark blue"></span>
+                          </label>
+                          <label class="radio_container">
+                            <input type="radio" checked="checked" name="radio1" class="radio_input" value="green">
+                            <span class="checkmark green"></span>
+                          </label>
+                          <label class="radio_container">
+                            <input type="radio"  name="radio1" class="radio_input" value="red">
+                            <span class="checkmark red"></span>
+                          </label>
+                          <label class="radio_container">
+                            <input type="radio" name="radio1" class="radio_input" value="yellow">
+                            <span class="checkmark yellow"></span>
+                          </label>
+                    </div>
                 </div>
             </div>
             <div class="player_details_get">
-                <h3 class="name_head" id="name_head_2">Player 2</h3>
-                <div class="input-container">
-                    <label for="player_name_2">Name</label>
-                    <input id = "player_name_2" class="" type="text" placeholder="Enter player 2 name" value="Player 2" maxlength="16">
+                <div class="player_det_head">
+                    <span id="name_head_2">Player 2</span>
+                </div>
+                <div class="input_container">
+                    <label for="player_name_2" class="player_det_label">Name: </label>
+                    <input id = "player_name_2" class="player_det_name_in" type="text" placeholder="Enter player 2 name" value="Player 2" maxlength="16">
                 </div>
                 <div class="all_radio_container">
-                    <div>Select tank color: </div>
-                    <br/>
-                    <label class="radio_container">
-                        <input type="radio" checked="checked" name="radio2" class="radio_input" value="blue">
-                        <span class="checkmark blue"></span>
-                      </label>
-                      <label class="radio_container">
-                        <input type="radio" name="radio2" class="radio_input" value="green">
-                        <span class="checkmark green"></span>
-                      </label>
-                      <label class="radio_container">
-                        <input type="radio"  name="radio2" class="radio_input" value="red">
-                        <span class="checkmark red"></span>
-                      </label>
-                      <label class="radio_container">
-                        <input type="radio" name="radio2" class="radio_input" value="yellow">
-                        <span class="checkmark yellow"></span>
-                      </label>
+                    <div class="tank_color_text">Select tank color: </div>
+                    <div class="color_container">
+                        <label class="radio_container">
+                            <input type="radio" checked="checked" name="radio2" class="radio_input" value="blue">
+                            <span class="checkmark blue"></span>
+                          </label>
+                          <label class="radio_container">
+                            <input type="radio" name="radio2" class="radio_input" value="green">
+                            <span class="checkmark green"></span>
+                          </label>
+                          <label class="radio_container">
+                            <input type="radio"  name="radio2" class="radio_input" value="red">
+                            <span class="checkmark red"></span>
+                          </label>
+                          <label class="radio_container">
+                            <input type="radio" name="radio2" class="radio_input" value="yellow">
+                            <span class="checkmark yellow"></span>
+                          </label>
+                    </div>
                 </div>
-                <div class="next_weapon"><button id="display_weapon" onclick="display_weapon()">Next</button></div>
+                <div class="next_weapon"><button id="display_weapon" class="button_next"onclick="display_weapon()">Next</button></div>
             </div>
         </div>
         <div class="weapon_select" id="weapon_select">
             <button class="right close " onclick="displayStart()">X</button>
             <div class="player1_weapons">
-                <div>
-                    <h3 id="weapon_player1_name">Player 1</h3>
+                <div class="player_det_head">
+                    <span id="weapon_player1_name">Player 1</span>
                 </div>
                 <div class="weapon_name_container" id="weapon_name_1"></div>
-                <div><button onclick="fill_player_details()"> Back</button></div>
+                <div><button onclick="fill_player_details()" class="btn"> Back</button></div>
             </div>
             <div class="weapon_list">
-                <div>
-                    <h3 class="center">Weapons</h3>
-                    <h5 id="current_weapon_selector"></h5>
+                <div class="weapon_list_head">
+                    <span class="player_det_head">Select Weapons</span>
+                    <span id="current_weapon_selector" class="current_selector"></span>
                 </div>
                 <div class="weapon_list_container" id="weapon_list_container">
                 </div>
             </div>
             <div class="player2_weapons">
-                <div>
-                    <h3 id="weapon_player2_name">Player 2</h3>
+                <div class="player_det_head">
+                    <span id="weapon_player2_name">Player 2</span>
                 </div>
                 <div class="weapon_name_container" id="weapon_name_2"></div>
-                <div><button onclick="displayGame()">start Game</button></div>
+                <div><button onclick="displayGame()" class="btn">Start Game</button></div>
             </div>
         </div>
         <div class="game-wrapper" id="game-wrapper">
@@ -122,9 +127,9 @@
                     <div class="img_weapon_container"> 
                         <select id ="player1_options">
                         </select>
-                        <img class="show_weapon" id="show_weapon_1" src="images/missile.svg"/>
+                        <div class="show_weapon_container"><img class="show_weapon" id="show_weapon_1" src="images/missile.svg"/></div>
                     </div>
-                    <button id="button1" class="fire-button" onclick="fire(0)" >Fire 1</button>
+                    <button id="button1" class="fire-button" onclick="fire(0)" >Fire</button>
                 </div>
             </div>
             <div class="player_details">
@@ -142,9 +147,9 @@
                     <div class="img_weapon_container">
                         <select id ="player2_options">
                         </select>
-                        <img class="show_weapon" id="show_weapon_2" src="images/missile.svg"/>
+                        <div class="show_weapon_container"><img class="show_weapon" id="show_weapon_2" src="images/missile.svg"/></div>
                     </div>
-                    <button id="button2" class="fire-button" onclick="" >Fire 2</button>
+                    <button id="button2" class="fire-button" onclick="" >Fire</button>
                 </div> 
             </div>
         </div>
