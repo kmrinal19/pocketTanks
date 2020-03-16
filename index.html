@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="game.css">
     </head>
     <body>
         <div class="overlay-container" id="overlay-container">
             <div class="overlay" id="overlay"></div>
-        </div>
+        </div> 
         <div class="game-starter" id="game-starter">
-            <button class="start_buttons" id="start_game" onclick="fill_player_details()">Start Game</button>
-            <button class="start_buttons" id="option_game" onclick="displayOptions()">Options</button>
-            <button class="start_buttons" id="instructions_game" onclick="displayInstructions()">Instructions</button>
+            <div class="game_start_head"><div>Pocket</div><div>Tanks</div></div>
+            <div class="game_start_canon"><img src="images/canon.svg"/></div>
+            <div class="game_start_tank"><img src="images/tank_main.png" width="300" height="170"/></div>
+            <div class="game_start_option">
+                <div>
+                    <button class="start_buttons" id="start_game" onclick="fill_player_details()">Start Game</button>
+                    <!--<button class="start_buttons" id="option_game" onclick="displayOptions()">Options</button>-->
+                    <button class="start_buttons" id="instructions_game" onclick="displayInstructions()">Instructions</button>
+                </div>
+            </div>
         </div>
         <div class="fill_player_details" id="fill_player_details">
             <button class="close" onclick="displayStart()">X</button>

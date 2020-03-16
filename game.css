@@ -10,15 +10,59 @@ canvas {
     display: grid;
     justify-items: center;
     align-content: center;
-    background-color: #f1f1f1;
+    background-color: #243665;
     width: 1000px;
     justify-self: center;
     height: 600px;
-    
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 42% 58%;
+}
+.game_start_head{
+    grid-row-start: 1;
+    grid-column-start: 2;
+    display: grid;
+    justify-items: center;
+    align-content: end;
+    font-family: 'Concert One', cursive;
+    font-size: 90px;
+    color: #8BD8BD;
+}
+.game_start_canon{
+    text-align: left;
+    grid-row-start: 1;
+    grid-column-start: 3;
+    display: grid;
+    justify-content: start;
+    align-items: end;
+    width: 100%;
+    margin-top: 50px;
+}
+.game_start_tank{
+    display: grid;
+    grid-row-start: 2;
+    grid-column-start: 1;
+    justify-items: end;
+    align-items: end;
+    padding-bottom: 45px;
+}
+.game_start_option{
+    grid-row-start: 2;
+    grid-column-start: 2;
+    justify-items: center;
+    align-items: start;
+    display: grid;
+    padding-top: 50px;
 }
 .start_buttons{
-    width: 100px;
-    margin: 7px;
+    width: 125px;
+    height: 35px;
+    border: none;
+    background-color: #dedede;
+    margin: 25px;
+    font-size: 18px;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    display: block;
 }
 .close{
     grid-column-start: 2;
