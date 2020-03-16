@@ -1,6 +1,7 @@
-var myGamePiece,ground,ball,tank,score,score_text,range,range_display,wind_vel,wind_dir
+var ground,ball,tank,score,score_text,range,range_display,wind_vel,wind_dir
 var speed,angle,speed_x,speed_y
 var player_name,tank_color,weapon_player,fire_player,player1_weapon,player2_weapon,weapon_count,player1_weapon_count,player2_weapon_count,weapon_hit
+var static_component_update
 var name_weapon,weapon_src,weapon_show_src
 name_weapon=["water blast","dynamite","grenade","canon ball","missile"]
 weapon_small=["dynamite","grenade","canon ball"]
@@ -21,6 +22,7 @@ player1_weapon=[]
 player2_weapon=[]
 player1_weapon_count=0
 player2_weapon_count=0
+static_component_update=0
 wind_dir=Math.floor(Math.random()*2)
 wind_vel=Math.floor(Math.random()*11)
 var name1 = document.getElementById("player_name_1")
@@ -373,12 +375,15 @@ function updateGameArea() {
       if(weapon_count==0){
           if(score[0]>score[1]){
               win(0)
+              document.getElementById("button1").setAttribute("onclick"," ")
           }
           else if(score[0]<score[1]){
               win(1)
+              document.getElementById("button1").setAttribute("onclick"," ")
           }
           else{
               win(-1)
+              document.getElementById("button1").setAttribute("onclick"," ")
             }
         }
     }
@@ -386,6 +391,7 @@ function updateGameArea() {
   function resetGame(){
     ball=null
     //player_name=["Player 1","Player 2"]
+    static_component_update=0
     tank=[]
     score=[0,0]
     score_text=[]
