@@ -10,7 +10,7 @@ button{
     cursor: pointer;
 }
 .game-starter{
-    display: grid;
+    display: none;
     justify-items: center;
     align-content: center;
     background-color: #243665;
@@ -461,4 +461,17 @@ button{
     color: white;
     font-family: 'Nunito Sans', sans-serif;
     font-size: 20px;
+}
+
+.loading{
+    height: 600px;
+    width: 1000px;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: #243665;
+    font-family: 'Concert One', cursive;
+    font-size: 90px;
+    color: #8BD8BD;
+    justify-self: center;
 }

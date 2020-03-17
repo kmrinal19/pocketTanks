@@ -43,6 +43,12 @@ weapon_drop_1.onchange=function(){
 weapon_drop_2.onchange=function(){
     document.getElementById("show_weapon_2").src="images/"+weapon_show_src[weapon_drop_2.value]
 }
+
+window.onload=function(){
+    document.getElementById("loading").style.display="none"
+    document.getElementById("game-starter").style.display="grid"
+}
+
 function displayGame(){
     if(weapon_count==10){
         document.getElementById("weapon_select").style.display="none"
