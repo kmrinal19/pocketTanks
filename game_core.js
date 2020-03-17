@@ -291,7 +291,10 @@ function fire(tank_no){
         enlarge=0
     }
     ball = new component(enlarge*10+20,enlarge*10+20,weapon_img_src,tank[tank_no].x+(!tank_no*20),310,"image","rotate") 
-    var proj=setInterval(project,20)
+    var proj
+    ball.image.onload=function(){
+        proj=setInterval(project,20)
+    }
     function project(){
         ball.time+=0.5
         ball.x=ball.time*speed_x*Math.pow(-1,tank_no)+(tank[tank_no].x+(!tank_no*20))
