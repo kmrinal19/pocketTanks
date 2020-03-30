@@ -277,8 +277,18 @@ function fire(tank_no){
     let elem=document.getElementById("player"+(tank_no+1)+"_options")
     let hit_weapon=document.getElementById("player"+(tank_no+1)+"_options").value
     elem.remove(elem.selectedIndex)
-    document.getElementById("show_weapon_1").src="images/"+weapon_show_src[weapon_drop_1.value]
-    document.getElementById("show_weapon_2").src="images/"+weapon_show_src[weapon_drop_2.value]
+    if(weapon_show_src[weapon_drop_1.value]==undefined){
+        document.getElementById("show_weapon_1").src="images/not_available.svg"
+    }
+    else{
+        document.getElementById("show_weapon_1").src="images/"+weapon_show_src[weapon_drop_1.value]
+    }
+    if(weapon_show_src[weapon_drop_2.value]==undefined){
+        document.getElementById("show_weapon_2").src="images/not_available.svg"
+    }
+    else{
+        document.getElementById("show_weapon_2").src="images/"+weapon_show_src[weapon_drop_2.value]
+    }
     weapon_count--   
     var x_enemy= tank[(!tank_no + 0)].x
     var y_enemy= tank[(!tank_no + 0)].y
