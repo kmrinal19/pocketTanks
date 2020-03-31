@@ -4,7 +4,7 @@ html,body{
 }
 canvas {
     /*border:1px solid #d3d3d3;*/
-    background-color: #f1f1f1;
+    background-color: #f0f8ff;
 }
 button{
     cursor: pointer;
@@ -321,7 +321,7 @@ button{
     justify-items: center;
     align-items: center;
     grid-template-columns: 50% 50%;
-    background-color: #f1f1f1;
+    background-color: #f5fffa;
     width: 1000px;
     justify-self: center;
     height: 600px;
@@ -347,6 +347,8 @@ button{
     font-family: 'Ubuntu', sans-serif;
     font-weight: 700;
     font-size: 18px;
+    color: #fff;
+    border-style: none;
 }
 .bottom_container{
     display: flex;
@@ -361,11 +363,16 @@ button{
     display: flex;
     height: 30px;
 }
+.select_btn{
+    border-style: none;
+    background-color: #fff;
+}
 .show_weapon_container{
     border-left: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #fff;
 }
 .show_weapon{
     width: 20px;
@@ -376,7 +383,8 @@ button{
     width: 50%;
     height: 15px;
     border-radius: 5px;
-    background: #d3d3d3;
+    border: 0.5px solid black;
+    background: #fff;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
