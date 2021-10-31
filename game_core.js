@@ -343,7 +343,6 @@ function fire(tank_no){
             checkwin()
             wind_dir=Math.floor(Math.random()*2)
             wind_vel=Math.floor(Math.random()*11)
-            //alert(x_own+" "+ball.x+" hit")
         }
         else if(ball.x>=1000 || ball.y>360){
             clearInterval(proj)
@@ -355,7 +354,6 @@ function fire(tank_no){
             checkwin()
             wind_dir=Math.floor(Math.random()*2)
             wind_vel=Math.floor(Math.random()*11)
-            //alert(x_own+" "+ball.x)
         }
     }
 }
